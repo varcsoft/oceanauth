@@ -11,7 +11,7 @@ export default (app) => {
       req.headers['ngrok-skip-browser-warning'] = 0;
       next();
     });
-    app.get('/', async (req, res) => res.json('Hello! Welcome To PAYX'));
+    app.get('/', async (req, res) => res.json('Hello! Welcome To OceanAuth'));
     app.get('/ping', async (req, res) => res.json('pong!'));
     app.use("/auth", authRoutes);
     app.use(auth.checkToken);
