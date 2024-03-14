@@ -68,6 +68,7 @@ const resetpassword = async (req, res, next) => {
 
 const getprofile = async (req, res, next) => {
     try {
+        console.log(req.params.id);
         const data = await userservice.getuser(req.params.id);
         return sendresponse(res, data, 200,req);
     } catch (e) {

@@ -12,6 +12,26 @@ const getapptoken = () => {
     return jwt.sign({app:process.env.APP_NAME}, constants.SECRET);
 }
 
+const checkapptoken = (req, res, next) => {
+    let token = req.headers['authorization'];
+    if (token) {
+        if (token.startsWith('Bearer ')) {
+            token = token.slice(7, token.length);
+            jwt.verify(token, constants.SECRET, (err, decoded) => {
+                if (err) {
+                    throw new ApiError(400,'Auth token is not valid');
+                }
+                else if(decoded.app==process.env.APP_NAME){
+                    next();
+                }
+            });
+        }
+    }
+    else {
+        throw new ApiError(400,'Auth token is not supplied');
+    }
+};
+
 const checkToken = (req, res, next) => {
     let token = req.headers['authorization'];
     if (token) {
@@ -59,4 +79,4 @@ const issuperadmin = (req, res, next) => {
     }
 };
 
-export default { checkToken,isadmin,issuperadmin,ishost,getToken }
+export default { checkToken,isadmin,issuperadmin,ishost,getToken,getapptoken,checkapptoken }

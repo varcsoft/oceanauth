@@ -1,6 +1,9 @@
 import usercontroller from "../controllers/user.js"
 import express from "express";
-const router = express.Router()
+import auth from "../middlewares/checkAuth.js";
+
+const router = express.Router();
+router.use(auth.checkapptoken);
 
 router
   .get('/', usercontroller.get)
