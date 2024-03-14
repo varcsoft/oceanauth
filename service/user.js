@@ -160,4 +160,13 @@ async function resetpassword(password, id) {
     await prisma.users.update({ where: { id: parseInt(id) }, data: { password } });
 }
 
-export default { verify, getbyemail, createuser, login, deleteuser, getuser, updateuser, getallusers, forgotpassword, resetpassword };
+const generateapptoken = async (req, res, next) => {
+    try {
+        const token = auth.generateapptoken();
+        return sendresponse(res, data, 200, req);
+    } catch (e) {
+        next(e);
+    }
+}
+
+export default { generateapptoken,verify, getbyemail, createuser, login, deleteuser, getuser, updateuser, getallusers, forgotpassword, resetpassword };

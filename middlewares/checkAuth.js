@@ -8,6 +8,10 @@ const getToken = (phone,id,role,time) => {
     return jwt.sign({ phone: phone, id: id.toString(), role: !role ? "role" : role }, constants.SECRET, { expiresIn: time ? time+"M" : process.env.JWT_REFRESH_EXPIRATION_DAYS+"d" })
 };
 
+const getapptoken = () => {
+    return jwt.sign({app:process.env.APP_NAME}, constants.SECRET);
+}
+
 const checkToken = (req, res, next) => {
     let token = req.headers['authorization'];
     if (token) {

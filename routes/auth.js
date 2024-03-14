@@ -6,4 +6,6 @@ const router = express.Router()
 router
 .post("/register", usercontroller.register)
 .post("/login", usercontroller.login)
+.post("/generateapptoken",usercontroller.generateapptoken)
+
 export default router;

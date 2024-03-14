@@ -4,9 +4,10 @@ const router = express.Router()
 
 router
   .get('/', usercontroller.get)
-  .get('/profile', usercontroller.getprofile)
-  .put("/profile", usercontroller.updateprofile)
-  .delete("/profile", usercontroller.deleteprofile)
+  .get('/profile/:id', usercontroller.getprofile)
+  .put("/profile/:id", usercontroller.updateprofile)
+  .delete("/profile/:id", usercontroller.deleteprofile)
+  .get('/verifytoken', usercontroller.verifyuser)
   .put('/:id', usercontroller.put)
   .delete('/:id', usercontroller.deletebyid)
 

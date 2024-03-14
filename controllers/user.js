@@ -68,7 +68,7 @@ const resetpassword = async (req, res, next) => {
 
 const getprofile = async (req, res, next) => {
     try {
-        const data = await userservice.getuser(req.user.id);
+        const data = await userservice.getuser(req.params.id);
         return sendresponse(res, data, 200,req);
     } catch (e) {
         next(e);
@@ -95,11 +95,20 @@ const deleteprofile = async (req, res, next) => {
 
 const verifyuser = async (req, res, next) => {
     try {
-        let data = await userservice.verify(req);
-        return sendresponse(res, data, 201,req);
+        const data = await userservice.getuser(req.user.id);
+        return sendresponse(res, data, 200,req);
     } catch (e) {
         next(e);
     }
 }
 
-export default { verifyuser,get, put, deletebyid, getprofile, updateprofile, deleteprofile, register, login, forgotpassword, resetpassword };
+const generateapptoken = async (req, res, next) => {
+    try {
+        const data = await userservice.generateapptoken(req);
+        return sendresponse(res, data, 200,req);
+    } catch (e) {
+        next(e);
+    }
+}
+
+export default { generateapptoken,verifyuser,get, put, deletebyid, getprofile, updateprofile, deleteprofile, register, login, forgotpassword, resetpassword };
