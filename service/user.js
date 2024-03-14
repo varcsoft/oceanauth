@@ -102,7 +102,8 @@ function getusersysdetails(req) {
 async function deleteuser(req, id) {
     let user = await getuser(id);
     checkuser(user);
-    user = await prisma.users.delete({ where: { id: Number(user.id) } });
+    // user = await prisma.users.delete({ where: { id: Number(user.id) } });
+    user= await prisma.users.update({ where: { id: Number(user.id) }, data: { status: false } });
     return await deleteproperties(user);
 }
 

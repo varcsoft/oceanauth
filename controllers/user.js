@@ -78,7 +78,7 @@ const getprofile = async (req, res, next) => {
 
 const updateprofile = async (req, res, next) => {
     try {
-        let data = await userservice.updateuser(req, req.user.id);
+        let data = await userservice.updateuser(req, req.params.id);
         return sendresponse(res, data, 200,req);
     } catch (e) {
         next(e);
@@ -87,7 +87,7 @@ const updateprofile = async (req, res, next) => {
 
 const deleteprofile = async (req, res, next) => {
     try {
-        let data = await userservice.deleteuser(req, req.user.id);
+        let data = await userservice.deleteuser(req, req.params.id);
         return sendresponse(res, data, 200,req);
     } catch (e) {
         next(e);
