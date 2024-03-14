@@ -18,7 +18,10 @@ const checkapptoken = (req, res, next) => {
         if (token.startsWith('Bearer ')) {
             token = token.slice(7, token.length);
             jwt.verify(token, constants.SECRET, (err, decoded) => {
-                if (err) {
+                
+            console.log(decoded);
+            console.log(process.env.APP_NAME);
+            if (err) {
                     throw new ApiError(400,'Auth token is not valid');
                 }
                 else if(decoded.app==process.env.APP_NAME){

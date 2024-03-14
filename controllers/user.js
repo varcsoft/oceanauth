@@ -96,6 +96,7 @@ const deleteprofile = async (req, res, next) => {
 
 const verifyuser = async (req, res, next) => {
     try {
+        console.log("hii");
         const data = await userservice.getuser(req.user.id);
         return sendresponse(res, data, 200,req);
     } catch (e) {
