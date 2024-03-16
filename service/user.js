@@ -127,7 +127,14 @@ async function getuser(id) {
 }
 
 async function getallusers(req) {
-    const data = await prisma.users.findMany({ where: { role_id:Number(req.query.role_id) } });
+    const role_id=Number(req.query.role_id);
+    let data;
+    if(role_id){
+        const where= { role_id };
+        data = await prisma.users.findMany({where});
+    } else{
+        data = await prisma.users.findMany();
+    }
     for (let i = 0; i < data.length; i++) {
         data[i] = await deleteproperties(data[i]);
     }

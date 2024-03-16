@@ -14,8 +14,8 @@ export default (app) => {
     app.get('/', async (req, res) => res.json('Hello! Welcome To OceanAuth'));
     app.get('/ping', async (req, res) => res.json('pong!'));
     app.use("/auth", authRoutes);
-    app.use(auth.checkToken);
     app.use("/user", userRoutes);
+    app.use(auth.checkToken);
     app.use("/login_history", login_historyRoutes);
     app.use("/verify", verifyRoutes);
     app.use((req, res, next) => next(new ApiError(401,'Not found')));

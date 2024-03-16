@@ -9,8 +9,8 @@ router
   .get('/profile/:id',auth.checkapptoken, usercontroller.getprofile)
   .put("/profile/:id",auth.checkapptoken, usercontroller.updateprofile)
   .delete("/profile/:id",auth.checkapptoken, usercontroller.deleteprofile)
-  .get('/verifytoken', usercontroller.verifyuser)
-  .put('/:id', usercontroller.put)
-  .delete('/:id', usercontroller.deletebyid)
+  .get('/verifytoken',auth.checkToken, usercontroller.verifyuser)
+  .put('/:id',auth.checkapptoken, usercontroller.put)
+  .delete('/:id',auth.checkapptoken, usercontroller.deletebyid)
 
 export default router;
