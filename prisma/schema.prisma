@@ -18,11 +18,11 @@ model role {
 model users {
   id            Int             @id @default(autoincrement())
   email         String          @unique @db.VarChar(50)
-  password      String          @db.VarChar(100)
-  status        Boolean         @default(true)
   name          String          @db.VarChar(50)
+  status        Boolean         @default(true)
   address       String?
   profile_pic   String?         @db.VarChar(255)
+  password      String          @db.VarChar(100)
   token         String?         @db.VarChar(255)
   role_id       Int
   role          role            @relation(fields: [role_id], references: [id], onDelete: Cascade)

@@ -12,16 +12,16 @@ BEGIN
         ('USER', current_timestamp, current_timestamp);
 
     -- Insert data into the 'user' table
-    FOR i IN 1..100 LOOP
+    FOR i IN 1..200 LOOP
     INSERT INTO users (email, password, status, name, address, profile_pic, token, role_id, created_on, modified_on)
     VALUES
-        ('user' || i || '@example.com', '{{password}}', true, 'User' || i, 'Address ' || i, 'profile_pic_' || i || '.jpg', 'token' || i, floor(random() * 2) + 1, current_timestamp, current_timestamp);
+        ('shivakokkula' || i || '@gmail.com', '{{password}}', true, 'User' || i, 'Address ' || i, 'profile_pic_' || i || '.jpg', 'token' || i, floor(random() * 2) + 1, current_timestamp, current_timestamp);
     END LOOP;
 
     -- Insert data into the 'login_history' table
-    FOR i IN 1..100 LOOP
+    FOR i IN 1..200 LOOP
     INSERT INTO login_history (user_id, ipaddress, useragent, devicetype, operatingsystem, browser, timestamp)
     VALUES
-        (floor(random() * 100) + 1, '192.168.0.' || i, 'UserAgent' || i, 'DeviceType' || i, 'OS' || i, 'Browser' || i, current_timestamp);
+        (i, '192.168.0.' || i, 'UserAgent' || i, 'DeviceType' || i, 'OS' || i, 'Browser' || i, current_timestamp);
     END LOOP;
 END $$;
