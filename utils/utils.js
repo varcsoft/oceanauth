@@ -7,8 +7,8 @@ function checkvalues(required) {
 }
 
 function sendresponse(res, data, status,req) {
-    console.log(data);
     log(req.method,req.originalUrl);
+    console.log(data);
     return res.status(status).json({ "message": "success", "data": data, "count":data==null ? 0 : data.length });
 }
 
@@ -17,6 +17,7 @@ function log(type,url) {
     url=url?url:"UNDEFINED";
     console.log("REQUEST TYPE : "+type);
     console.log("URL : "+url);
+    console.log("success");
 }
 
 function generaterandomcode() {
