@@ -7,9 +7,9 @@ function checkvalues(required) {
 }
 
 function sendresponse(res, data, status,req) {
-    log(req.method,req.originalUrl,"Success",status);
+    log(req.method,req.originalUrl,"success",status);
     console.log(data);
-    return res.status(status).json({ "message": "Success", "data": data, "count":data==null ? 0 : data.length });
+    return res.status(status).json({ "message": "success", "data": data, "count":data==null ? 0 : data.length });
 }
 
 function log(type,url,message,status) {

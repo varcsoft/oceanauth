@@ -4,9 +4,9 @@ const errorHandler = (err, req, res, next) => {
     // message=isOperational ? message : "Internal Server Error";
     statusCode=statusCode ? statusCode : 500;
     if(req) log(req.method,req.originalUrl);
-    log(req.method,req.originalUrl,"Error",statusCode);
+    log(req.method,req.originalUrl,"error",statusCode);
     console.log(err);
-    res.status(statusCode).json({ message:"Error",data:message });
+    res.status(statusCode).json({ message:"error",data:message });
 }
 
 export default errorHandler;
