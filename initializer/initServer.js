@@ -2,7 +2,9 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 let server;
-
+console.log("ENV: ",process.env.ENV);
+console.log("PORT: ",process.env.PORT);
+console.log("DB: ",process.env.DB);
 const unexpectedErrorHandler = (error) => {
     console.log(error);
     if (server) {
