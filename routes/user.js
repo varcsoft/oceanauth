@@ -10,7 +10,7 @@ router
   .put("/profile/:id",auth.checkapptoken, usercontroller.updateprofile)
   .delete("/profile/:id",auth.checkapptoken, usercontroller.deleteprofile)
   .get('/verifytoken',auth.checkToken, usercontroller.verifyuser)
-  .put('/:id',auth.checkapptoken, usercontroller.put)
+  .put('/:id', usercontroller.put)
   .delete('/:id',auth.checkapptoken, usercontroller.deletebyid)
 
 export default router;

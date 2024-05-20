@@ -7,7 +7,7 @@ dotenv.config();
 const salt = bcrypt.genSaltSync(10);
 const password = bcrypt.hashSync("Shiva@123", salt, null);
 const filePath = './utils/insert.sql';
-const connectionString = process.env.DB; // Change this to your actual database connection string
+const connectionString = process.env.DB;
 
 // Create a PostgreSQL pool
 const { Pool } = pg;

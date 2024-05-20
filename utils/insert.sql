@@ -1,7 +1,12 @@
 DO $$ 
 DECLARE
     i INT;
+    token TEXT;
+    dynamic_image TEXT;
 BEGIN
+    dynamic_image := '  ';
+    token := '{{token}}';
+
     -- Truncate all tables
     TRUNCATE TABLE role, users, login_history RESTART IDENTITY CASCADE;
 
@@ -15,7 +20,7 @@ BEGIN
     FOR i IN 1..200 LOOP
     INSERT INTO users (email, password, status, name, address, profile_pic, token, role_id, created_on, modified_on)
     VALUES
-        ('shivakokkula' || i || '@gmail.com', '{{password}}', true, 'User' || i, 'Address ' || i, 'profile_pic_' || i || '.jpg', 'token' || i, floor(random() * 2) + 1, current_timestamp, current_timestamp);
+        ('shivakokkula' || i || '@gmail.com', '{{password}}', true, 'User' || i, 'Address ' || i, dynamic_image, 'token' || i, floor(random() * 2) + 1, current_timestamp, current_timestamp);
     END LOOP;
 
     -- Insert data into the 'login_history' table
