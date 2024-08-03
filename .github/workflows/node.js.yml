@@ -5,6 +5,7 @@ name: Oceanauth
 
 on:
   push:
+<<<<<<< HEAD
     branches: 
     - main
     - master
@@ -17,6 +18,11 @@ on:
     - main
     - master
     - develop
+=======
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+>>>>>>> 2cef216 (commit)
 
 jobs:
   build:
@@ -36,7 +42,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
+<<<<<<< HEAD
     - run: | 
         touch .env
         echo '${{ secrets.PROD }}' > .env
     - run: pm2 restart oceanauth-backend
+=======
+>>>>>>> 2cef216 (commit)
