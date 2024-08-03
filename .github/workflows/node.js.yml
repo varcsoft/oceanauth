@@ -5,9 +5,18 @@ name: Oceanauth
 
 on:
   push:
-    branches: [ "main" ]
+    branches: 
+    - main
+    - master
+    - develop
+    - 'test/**'
+    - 'test*'
   pull_request:
-    branches: [ "main" ]
+    types: [synchronize]
+    branches:
+    - main
+    - master
+    - develop
 
 jobs:
   build:
@@ -26,5 +35,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm i
-    - run: pm2 restart oceanauth-backend
+    - run: | 
+        npm ci
+        touch .env
+        echo '{{ secrets.PROD }}' > .env
+        pm2 restart oceanauth-backend
