@@ -35,8 +35,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: npm ci
     - run: | 
-        npm ci
         touch .env
         echo '{{ secrets.PROD }}' > .env
-        pm2 restart oceanauth-backend
+    - run: pm2 restart oceanauth-backend
