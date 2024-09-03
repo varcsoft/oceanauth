@@ -113,4 +113,24 @@ const generateapptoken = async (req, res, next) => {
     }
 }
 
-export default { generateapptoken,verifyuser,get, put, deletebyid, getprofile, updateprofile, deleteprofile, register, login, forgotpassword, resetpassword };
+const restartserver = async (req, res, next) => {
+    try {
+        // run runner.sh file
+        exec("sh runner.sh", (error, stdout, stderr) => {
+            if (error) {
+                console.log(`error: ${error.message}`);
+                return;
+            }
+            if (stderr) {
+                console.log(`stderr: ${stderr}`);
+                return;
+            }
+            console.log(`stdout: ${stdout}`);
+        });
+        return sendresponse(res,"Successfully restarted server", 201,req);
+    } catch (e) {
+        next(e);
+    }
+}
+
+export default { restartserver,generateapptoken,verifyuser,get, put, deletebyid, getprofile, updateprofile, deleteprofile, register, login, forgotpassword, resetpassword };
