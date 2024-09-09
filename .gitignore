@@ -2,4 +2,3 @@ node_modules/*
 uploads/*
 sql/*
 !uploads/.gitkeep
-.env
